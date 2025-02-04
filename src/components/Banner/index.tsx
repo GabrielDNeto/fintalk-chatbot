@@ -1,6 +1,8 @@
 import { MessageSquareMore } from "lucide-react";
 
 import bannerImgUrl from "../../assets/banner-img.jpg";
+import { Link } from "react-router-dom";
+import { APP_ROUTES } from "../../config/routes";
 
 const Banner = () => {
   return (
@@ -15,11 +17,17 @@ const Banner = () => {
           ser lento não é uma opção.
         </p>
 
-        <button className="text-white bg-pink-600 hover:bg-pink-500 mt-4 flex items-center gap-4    ">
-          <MessageSquareMore size={20} />
-          Falar com Chatbot
-        </button>
+        <Link to={APP_ROUTES.chat}>
+          <button
+            className="text-white bg-pink-600 hover:bg-pink-500 mt-4 flex items-center gap-4"
+            type="button"
+          >
+            <MessageSquareMore size={20} />
+            Falar com Chatbot
+          </button>
+        </Link>
       </div>
+
       <div className="w-1/2 h-full flex flex-col justify-center items-center">
         <img
           className="rounded-4xl max-w-[37.5rem]"
