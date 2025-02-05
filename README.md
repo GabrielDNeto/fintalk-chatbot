@@ -19,9 +19,15 @@ git clone https://github.com/GabrielDNeto/fintalk-chatbot.git
 - Acesse a pasta e execute os comandos
 
 ```
-npm i //Para instalar todas as dependências
+//Para instalar todas as dependências:
+npm i
 
-npm run dev //Para executar a aplicação
+//Para executar a aplicação:
+npm run dev
+```
 
-npm run test //Para executar testes
+- Testes
+
+```
+npm run test
 ```
