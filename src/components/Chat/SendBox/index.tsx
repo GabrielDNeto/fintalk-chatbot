@@ -43,7 +43,7 @@ const ChatSendBox = () => {
           className="bg-pink-600 hover:bg-pink-500 text-white flex items-center gap-4 rounded shadow-lg"
           onClick={sendMessage}
         >
-          Enviar
+          <span className="hidden md:block ">Enviar</span>
           <Send size={20} />
         </button>
       </div>

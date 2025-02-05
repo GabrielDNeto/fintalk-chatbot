@@ -6,9 +6,9 @@ import { APP_ROUTES } from "../../config/routes";
 
 const Banner = () => {
   return (
-    <div className="w-full h-full py-8 flex justify-center items-center text-white">
-      <div className="w-1/2 h-full flex flex-col justify-center gap-4">
-        <h1 className="bg-gradient-to-l to-violet-300 from-pink-600 text-transparent bg-clip-text text-6xl font-bold">
+    <div className="w-full h-full flex flex-col md:flex-row justify-center items-center text-white">
+      <div className="w-full md:w-1/2 md:h-full flex flex-col justify-center items-center md:items-start gap-4 text-center md:text-left">
+        <h1 className="bg-gradient-to-l to-violet-300 from-pink-600 text-transparent bg-clip-text text-5xl md:text-6xl font-bold ">
           Nº 1 em IA <br />
           Conversacional
         </h1>
@@ -28,9 +28,9 @@ const Banner = () => {
         </Link>
       </div>
 
-      <div className="w-1/2 h-full flex flex-col justify-center items-center">
+      <div className="md:w-1/2 md:h-full hidden md:visible md:flex md:flex-col md:justify-center md:items-center">
         <img
-          className="rounded-4xl max-w-[37.5rem]"
+          className="rounded-4xl md:max-w-[80%]"
           src={bannerImgUrl}
           alt="happy women using mobile and card"
         />

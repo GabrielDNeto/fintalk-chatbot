@@ -13,12 +13,6 @@
 }
 
 @layer base {
-  h1 {
-    font-size: 4rem;
-    line-height: 4.5rem;
-    font-weight: bold;
-  }
-
   button {
     width: fit-content;
     cursor: pointer;
