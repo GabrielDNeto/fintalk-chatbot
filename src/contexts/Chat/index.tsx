@@ -12,6 +12,7 @@ interface IChatContext {
   isLoading: boolean;
   messages: IMessage[];
   handleSubmitMessage: (message: IMessage) => void;
+  isBotTyping: boolean;
 }
 
 const ChatContext = createContext<IChatContext | undefined>(undefined);
@@ -19,6 +20,7 @@ const ChatContext = createContext<IChatContext | undefined>(undefined);
 const ChatContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [isBotTyping, setIsBotTyping] = useState<boolean>(false);
 
   const handleSaveHistory = (message: IMessage) => {
     const historyMessages = JSON.parse(
@@ -39,6 +41,7 @@ const ChatContextProvider = ({ children }: { children: React.ReactNode }) => {
 
     setMessages((prevMessages) => [...prevMessages, botMessage]);
     handleSaveHistory(botMessage);
+    setIsBotTyping(false);
   }, [messages, setMessages]);
 
   const handleSubmitMessage = useCallback(
@@ -53,15 +56,16 @@ const ChatContextProvider = ({ children }: { children: React.ReactNode }) => {
 
       handleSaveHistory(message);
 
+      setIsBotTyping(true);
       setTimeout(() => {
         handleBotReply();
-      }, 500);
+      }, 1000);
     },
     [messages, handleBotReply, handleSaveHistory],
   );
 
   const contextValue = useMemo(
-    () => ({ isLoading, messages, handleSubmitMessage }),
+    () => ({ isLoading, messages, handleSubmitMessage, isBotTyping }),
     [isLoading, messages, handleSubmitMessage],
   );
 

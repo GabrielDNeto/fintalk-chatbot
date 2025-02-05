@@ -4,7 +4,7 @@ import { useChatContext } from "../../../hooks/useChatContext";
 import ChatMessage from "../Message";
 
 const ChatMessagesWrapper = () => {
-  const { isLoading, messages } = useChatContext();
+  const { isLoading, messages, isBotTyping } = useChatContext();
 
   if (isLoading) {
     return (
@@ -19,11 +19,21 @@ const ChatMessagesWrapper = () => {
       {messages.map((m) => (
         <div
           key={`${m.date}_${m.from}`}
-          className={`w-full flex ${m.from === "user" ? "justify-end" : "justify-start"}`}
+          className={`w-full flex ${m.from === "user" ? "justify-end pl-8" : "justify-start pr-8"}`}
         >
           <ChatMessage message={m.message} date={m.date} />
         </div>
       ))}
+      {isBotTyping && (
+        <div>
+          <div className="w-fit py-2 px-4 bg-white dark:bg-gray-50 rounded">
+            <p className="flex items-center gap-4 text-sm mt-1">
+              Ditiando
+              <LoaderCircle className="animate-spin" size={16} color="#000" />
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
