@@ -28,7 +28,7 @@ const ChatMessagesWrapper = () => {
         <div>
           <div className="w-fit py-2 px-4 bg-white dark:bg-gray-50 rounded">
             <p className="flex items-center gap-4 text-sm mt-1">
-              Ditiando
+              Digitando
               <LoaderCircle className="animate-spin" size={16} color="#000" />
             </p>
           </div>

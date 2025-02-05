@@ -53,10 +53,8 @@ const ChatContextProvider = ({ children }: { children: React.ReactNode }) => {
       }
 
       setMessages((prevMessages) => [...prevMessages, message]);
-
       handleSaveHistory(message);
 
-      setIsBotTyping(true);
       setTimeout(() => {
         handleBotReply();
       }, 1000);
@@ -65,7 +63,12 @@ const ChatContextProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   const contextValue = useMemo(
-    () => ({ isLoading, messages, handleSubmitMessage, isBotTyping }),
+    () => ({
+      isLoading,
+      messages,
+      handleSubmitMessage,
+      isBotTyping,
+    }),
     [isLoading, messages, handleSubmitMessage],
   );
 
