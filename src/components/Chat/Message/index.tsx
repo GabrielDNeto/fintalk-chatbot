@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import "./styles.css";
 
 interface IChatMessage {
   message: string;
@@ -7,7 +8,7 @@ interface IChatMessage {
 
 const ChatMessage = ({ message, date }: IChatMessage) => {
   return (
-    <div>
+    <div className="message">
       <div className="w-fit py-2 px-4 bg-white dark:bg-gray-50 rounded">
         <div className="w-full">
           <span className="text-xs text-gray-500">
