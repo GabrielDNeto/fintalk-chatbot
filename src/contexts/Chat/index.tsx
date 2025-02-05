@@ -1,4 +1,10 @@
-import React, { createContext, useCallback, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { IMessage, MessageFromTypeEnum } from "../../models/Chat/message";
 import { BOT_RESPONSES } from "./responses";
 
@@ -14,6 +20,27 @@ const ChatContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [messages, setMessages] = useState<IMessage[]>([]);
 
+  const handleSaveHistory = (message: IMessage) => {
+    const historyMessages = JSON.parse(
+      localStorage.getItem("chat-history") as string,
+    );
+    localStorage.setItem(
+      "chat-history",
+      JSON.stringify([...(historyMessages || []), message]),
+    );
+  };
+
+  const handleBotReply = useCallback(() => {
+    const botMessage: IMessage = {
+      from: MessageFromTypeEnum.BOT,
+      message: BOT_RESPONSES[Math.floor(Math.random() * BOT_RESPONSES.length)],
+      date: new Date().toISOString(),
+    };
+
+    setMessages((prevMessages) => [...prevMessages, botMessage]);
+    handleSaveHistory(botMessage);
+  }, [messages, setMessages]);
+
   const handleSubmitMessage = useCallback(
     (message: IMessage) => {
       if (message.message === "/clear") {
@@ -24,18 +51,18 @@ const ChatContextProvider = ({ children }: { children: React.ReactNode }) => {
 
       setMessages((prevMessages) => [...prevMessages, message]);
 
-      setTimeout(() => {
-        const botMessage: IMessage = {
-          from: MessageFromTypeEnum.BOT,
-          message:
-            BOT_RESPONSES[Math.floor(Math.random() * BOT_RESPONSES.length)],
-          date: new Date().toISOString(),
-        };
+      handleSaveHistory(message);
 
-        setMessages((prevMessages) => [...prevMessages, botMessage]);
+      setTimeout(() => {
+        handleBotReply();
       }, 500);
     },
-    [messages],
+    [messages, handleBotReply, handleSaveHistory],
+  );
+
+  const contextValue = useMemo(
+    () => ({ isLoading, messages, handleSubmitMessage }),
+    [isLoading, messages, handleSubmitMessage],
   );
 
   useEffect(() => {
@@ -46,7 +73,6 @@ const ChatContextProvider = ({ children }: { children: React.ReactNode }) => {
         const parsedHistory: IMessage[] = JSON.parse(history);
 
         if (parsedHistory) {
-          console.log("teste", parsedHistory);
           setMessages(parsedHistory);
           setIsLoading(false);
         }
@@ -56,10 +82,19 @@ const ChatContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [isLoading, setMessages, setIsLoading]);
 
+  useEffect(() => {
+    const chatWrapper = document.querySelector(".chat-wrapper");
+
+    if (chatWrapper) {
+      chatWrapper.scrollTo({
+        top: chatWrapper.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [messages]);
+
   return (
-    <ChatContext.Provider value={{ isLoading, messages, handleSubmitMessage }}>
-      {children}
-    </ChatContext.Provider>
+    <ChatContext.Provider value={contextValue}>{children}</ChatContext.Provider>
   );
 };
 
