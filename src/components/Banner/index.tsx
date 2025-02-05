@@ -22,8 +22,8 @@ const Banner = () => {
             className="text-white bg-pink-600 hover:bg-pink-500 mt-4 flex items-center gap-4"
             type="button"
           >
-            <MessageSquareMore size={20} />
             Falar com Chatbot
+            <MessageSquareMore size={20} />
           </button>
         </Link>
       </div>

@@ -2,8 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { APP_ROUTES } from "../../config/routes";
 
 import App from "../../App";
-import Chat from "../../pages/Chat";
+import Chatbot from "../../pages/Chatbot";
 import MainLayout from "../../layouts/Main";
+import { ChatContextProvider } from "../../contexts/Chat";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
       },
       {
         path: APP_ROUTES.chat,
-        element: <Chat />,
+        element: (
+          <ChatContextProvider>
+            <Chatbot />
+          </ChatContextProvider>
+        ),
       },
     ],
   },

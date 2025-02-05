@@ -1,0 +1,17 @@
+export const BOT_RESPONSES = [
+  "Olá! Como posso ajudar você hoje?",
+  "Desculpe, não entendi sua pergunta. Pode tentar novamente?",
+  "Fico feliz em poder ajudar! O que você precisa?",
+  "Estou aqui para ajudar. O que posso fazer por você?",
+  "Poderia me dar mais detalhes sobre o que você precisa?",
+  "Infelizmente, não posso responder a isso. Posso tentar ajudar com outra coisa?",
+  "Que legal! Vamos resolver isso juntos!",
+  "Estou ouvindo, pode me contar mais?",
+  "Isso parece interessante. Me fale mais sobre isso!",
+  "Eu estou aprendendo e posso ficar melhor a cada conversa.",
+  "Desculpe, mas não posso ajudar com isso no momento.",
+  "Tenho algumas sugestões, você gostaria de ouvir?",
+  "Aguarde um momento enquanto eu busco mais informações para você.",
+  "Essa é uma excelente pergunta! Deixe-me verificar para você.",
+  "Estou aqui para tornar sua experiência mais fácil. Como posso ser útil?",
+];
