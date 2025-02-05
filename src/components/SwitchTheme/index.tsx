@@ -31,7 +31,7 @@ const SwitchTheme = () => {
   return (
     <label
       className="flex items-center cursor-pointer"
-      aria-label="Toggle Switch Theme"
+      aria-label="toggle-theme-label"
     >
       <div className="relative">
         <input
@@ -39,6 +39,7 @@ const SwitchTheme = () => {
           checked={isChecked}
           onChange={handleToggleSwitch}
           className="sr-only"
+          aria-label="theme-switch"
         />
         <div
           className={`block w-12 h-6 rounded-full ${isChecked ? "bg-pink-500" : "bg-gray-400"}`}

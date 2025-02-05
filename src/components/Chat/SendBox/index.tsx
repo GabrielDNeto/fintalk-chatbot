@@ -38,10 +38,12 @@ const ChatSendBox = () => {
           value={messageInput}
           onChange={(e) => setMessageInput(e.target.value)}
           onKeyDown={handleKeyDown}
+          aria-label="message-input"
         />
         <button
           className="bg-pink-600 hover:bg-pink-500 text-white flex items-center gap-4 rounded shadow-lg"
           onClick={sendMessage}
+          aria-label="send-message"
         >
           <span className="hidden md:block ">Enviar</span>
           <Send size={20} />

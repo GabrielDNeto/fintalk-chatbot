@@ -39,6 +39,7 @@ const ChatHeader = () => {
       <div className="w-full px-8 py-4 flex justify-between items-center bg-[#101C33] text-white rounded-t-2xl">
         <div className="flex gap-8 items-center">
           <button
+            name="back-button"
             className="p-2 hover:bg-white text-white hover:text-black"
             onClick={() => navigate(-1)}
           >
@@ -51,6 +52,8 @@ const ChatHeader = () => {
             </div>
 
             <input
+              type="text"
+              aria-label="bot-name"
               className={
                 isOnEditNameMode
                   ? "bg-white text-black"
