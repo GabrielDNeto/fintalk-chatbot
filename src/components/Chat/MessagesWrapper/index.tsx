@@ -10,7 +10,7 @@ const ChatMessagesWrapper = () => {
     return (
       <div
         id="chat-loader"
-        className="w-full h-[65%] p-4 bg-gray-200 dark:bg-[#243F73] flex justify-center items-center gap-8"
+        className="w-full h-[65%] p-4 bg-sky-300 dark:bg-[#243F73] flex justify-center items-center gap-8"
       >
         <LoaderCircle className="animate-spin" size={32} color="#fff" />
       </div>
@@ -20,7 +20,7 @@ const ChatMessagesWrapper = () => {
   return (
     <div
       id="chat-messages-wrapper"
-      className="chat-wrapper w-full h-[65%] p-4 bg-gray-200 dark:bg-[#243F73] flex flex-col gap-4 overflow-auto scroll-auto"
+      className="chat-wrapper w-full h-[65%] p-4 bg-sky-300 dark:bg-[#243F73] flex flex-col gap-4 overflow-auto scroll-auto"
     >
       {messages.map((m) => (
         <div

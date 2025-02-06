@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import "./styles.css";
+import { useChatContext } from "../../../hooks/useChatContext";
 
 interface IChatMessage {
   message: string;
@@ -7,9 +8,17 @@ interface IChatMessage {
 }
 
 const ChatMessage = ({ message, date }: IChatMessage) => {
+  const { chatColors } = useChatContext();
+
   return (
     <div className="message">
-      <div className="w-fit py-2 px-4 bg-white dark:bg-gray-50 rounded">
+      <div
+        className="w-fit py-2 px-4 rounded"
+        style={{
+          backgroundColor: chatColors.messageBackgroundColor,
+          color: chatColors.fontColor,
+        }}
+      >
         <div className="w-full">
           <span className="text-xs text-gray-500">
             {dayjs(new Date(date)).format("DD/MM/YYYY HH:mm")}

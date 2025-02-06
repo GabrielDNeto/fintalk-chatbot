@@ -5,7 +5,7 @@ import { useChatContext } from "../../../hooks/useChatContext";
 import { IMessage, MessageFromTypeEnum } from "../../../models/Chat/message";
 
 const ChatSendBox = () => {
-  const { handleSubmitMessage } = useChatContext();
+  const { handleSubmitMessage, isOnEditMode } = useChatContext();
 
   const [messageInput, setMessageInput] = useState<string>("");
 
@@ -28,6 +28,10 @@ const ChatSendBox = () => {
       sendMessage();
     }
   };
+
+  if (isOnEditMode) {
+    return <div className="h-20 bg-[#101C33]" />;
+  }
 
   return (
     <div className="w-full">

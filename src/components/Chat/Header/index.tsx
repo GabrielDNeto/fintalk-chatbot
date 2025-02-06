@@ -1,38 +1,17 @@
-import { ArrowLeft, Bot } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowLeft, ArrowRight, Bot, Settings } from "lucide-react";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useChatContext } from "../../../hooks/useChatContext";
 
 const ChatHeader = () => {
-  const [isOnEditNameMode, setIsOnEditNameMode] = useState(false);
-  const [chatbotName, setChatbotName] = useState("Chatbot");
+  const { isOnEditMode, setIsOnEditMode, botName, handleChangeBotName } =
+    useChatContext();
 
   const navigate = useNavigate();
 
-  const handleEditName = () => {
-    localStorage.setItem("chatbotName", chatbotName);
-    setIsOnEditNameMode(false);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const { key } = e;
-
-    const commandKeys = {
-      Enter: () => handleEditName(),
-      Escape: () => setIsOnEditNameMode(false),
-    };
-
-    if (commandKeys[key as keyof typeof commandKeys]) {
-      commandKeys[key as keyof typeof commandKeys]();
-    }
-  };
-
-  useEffect(() => {
-    const storedChatbotName = localStorage.getItem("chatbotName");
-
-    if (storedChatbotName) {
-      setChatbotName(storedChatbotName);
-    }
-  }, []);
+  const handleEditMode = useCallback(() => {
+    setIsOnEditMode((prev) => !prev);
+  }, [isOnEditMode]);
 
   return (
     <div className="w-full">
@@ -55,20 +34,25 @@ const ChatHeader = () => {
               type="text"
               aria-label="bot-name"
               className={
-                isOnEditNameMode
-                  ? "bg-white text-black"
+                isOnEditMode
+                  ? "px-2 rounded bg-white text-black"
                   : "bg-transparent text-white"
               }
               minLength={4}
               maxLength={15}
-              readOnly={!isOnEditNameMode}
-              value={chatbotName}
-              onChange={({ target }) => setChatbotName(target.value)}
-              onDoubleClick={() => setIsOnEditNameMode((prev) => !prev)}
-              onKeyDown={handleKeyDown}
+              readOnly={!isOnEditMode}
+              value={botName}
+              onChange={({ target }) => handleChangeBotName(target.value)}
             />
           </div>
         </div>
+
+        <button
+          className={`p-2 ${isOnEditMode ? "bg-white hover:bg-pink-500 text-black hover:text-white" : " hover:bg-white text-white hover:text-black"}`}
+          onClick={handleEditMode}
+        >
+          {isOnEditMode ? <ArrowRight size={20} /> : <Settings size={20} />}
+        </button>
       </div>
     </div>
   );
