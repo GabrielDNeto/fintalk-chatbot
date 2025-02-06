@@ -9,7 +9,7 @@ const EditChat = () => {
   return (
     <div
       id="chat-messages-wrapper"
-      className="chat-wrapper w-full h-[65%] p-4 bg-gray-200 dark:bg-[#243F73] flex flex-col gap-4 overflow-auto scroll-auto"
+      className="chat-wrapper w-full h-[65%] p-4 bg-blue-400 dark:bg-[#243F73] flex flex-col gap-4 overflow-auto scroll-auto"
     >
       <div className="w-full flex flex-col mx-auto justify-center gap-8">
         <div className="flex justify-between items-center">
