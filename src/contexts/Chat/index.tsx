@@ -5,9 +5,10 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { DEFAULT_CHAT_COLORS } from "../../config/chatDefaultColors";
+import { ChatItemTypeColorEnum, IChatColors } from "../../models/Chat/colors";
 import { IMessage, MessageFromTypeEnum } from "../../models/Chat/message";
 import { BOT_RESPONSES } from "./responses";
-import { ChatItemTypeColorEnum, IChatColors } from "../../models/Chat/colors";
 
 interface IChatContext {
   isLoading: boolean;
@@ -21,11 +22,6 @@ interface IChatContext {
   chatColors: IChatColors;
   handleChangeChatColors: (color: string, item: ChatItemTypeColorEnum) => void;
 }
-
-const DEFAULT_CHAT_COLORS: IChatColors = {
-  fontColor: "#000",
-  messageBackgroundColor: "#fff",
-};
 
 const ChatContext = createContext<IChatContext | undefined>(undefined);
 
