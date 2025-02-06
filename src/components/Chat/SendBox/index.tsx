@@ -35,7 +35,7 @@ const ChatSendBox = () => {
 
   return (
     <div className="w-full">
-      <div className="w-full px-8 py-6 flex justify-between items-center bg-[#101C33] gap-4 rounded-b-2xl">
+      <div className="w-full p-2 md:px-8 md:py-6 flex justify-between items-center bg-[#101C33] gap-4 rounded-b-2xl">
         <textarea
           className="w-full max-h-14 resize-none bg-white p-2 rounded shadow-lg"
           placeholder="Digite sua mensagem..."

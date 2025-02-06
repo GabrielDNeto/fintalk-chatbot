@@ -15,8 +15,8 @@ const ChatHeader = () => {
 
   return (
     <div className="w-full">
-      <div className="w-full px-8 py-4 flex justify-between items-center bg-[#101C33] text-white rounded-t-2xl">
-        <div className="flex gap-8 items-center">
+      <div className="w-full px-2 md:px-8 py-4 flex justify-between items-center bg-[#101C33] text-white rounded-t-2xl">
+        <div className="max-w-[75%] flex gap-4 items-center">
           <button
             name="back-button"
             className="p-2 hover:bg-white text-white hover:text-black"
@@ -33,11 +33,11 @@ const ChatHeader = () => {
             <input
               type="text"
               aria-label="bot-name"
-              className={
+              className={`px-2 max-w-[25%] md:max-w-[50%] ${
                 isOnEditMode
-                  ? "px-2 rounded bg-white text-black"
+                  ? "rounded bg-white text-black"
                   : "bg-transparent text-white"
-              }
+              }`}
               minLength={4}
               maxLength={15}
               readOnly={!isOnEditMode}
